@@ -1,10 +1,17 @@
 import React from 'react'
-import NavBar from '../components/NavBar'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import HeroSection from '../components/HeroSection'
+import AboutUs from './AboutUs'
+
 
 export default function HomePage() {
   return (
     <div>
-        <NavBar/>
+      <Navbar />
+      <HeroSection />
+      <AboutUs />
+      <Footer />
     </div>
   )
 }
