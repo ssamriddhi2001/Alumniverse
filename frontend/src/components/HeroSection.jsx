@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Heading, Stack, HStack, Text, Button, Image } from '@chakra-ui/react';
+import { Container, Heading, Stack, HStack, Text, Button } from '@chakra-ui/react';
 
 
 const HeroSection = () => {

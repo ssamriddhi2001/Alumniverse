@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link as Navlink } from "react-router-dom";
 import {
     Box,
     Flex,
@@ -6,43 +7,38 @@ import {
     Button,
     Text,
     Link,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
     Stack,
-    Icon,
     IconButton,
     Image,
 } from '@chakra-ui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
-import { BiChevronDown } from 'react-icons/bi';
-import logoImg from "../logo.png";
+// import { BiChevronDown } from 'react-icons/bi';
+import logoImg from "../images/logo.png";
 
 
 const navLinks = [
 
-    { name: 'Home', path: '#' },
-    { name: 'About', path: '#' },
-    { name: 'Events', path: '#' },
-    { name: 'Contact us', path: '#' },
+    { name: 'Home', to: '/' },
+    { name: 'About', to: '/About' },
+    { name: 'Events', to: '/events' },
+    { name: 'Contact us', to: '/contact' },
 ];
 
-const dropdownLinks = [
-    {
-        name: 'Blog',
-        path: '#',
-    },
-    {
-        name: 'Documentation',
-        path: '#',
-    },
-    {
-        name: 'Github Repo',
-        path: '#',
-    },
-];
+// const dropdownLinks = [
+//     {
+//         name: 'Blog',
+//         path: '#',
+//     },
+//     {
+//         name: 'Documentation',
+//         path: '#',
+//     },
+//     {
+//         name: 'Github Repo',
+//         path: '#',
+//     },
+// ];
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -58,18 +54,20 @@ function Navbar() {
     return (
         <Box px={4} bg="white">
             <Flex h={16} alignItems="center" justifyContent="center" mx="auto">
+
                 <Image src={logoImg} height={"3rem"} />
                 <Text fontSize={"2xl"} fontWeight={"bold"}>
-                    Alumniverse
+                    <Link as={Navlink}
+                        to="/" className='no-underline hover:text-[#4075ae]' style={{ textDecoration: 'none' }}> Alumniverse </Link>
                 </Text>
                 <HStack spacing={8} alignItems="center">
                     <HStack as="nav" spacing={6} p={"6"} display={{ base: 'none', md: 'flex' }} alignItems="center">
                         {navLinks.map((link, index) => (
-                            <NavLink key={index} name={link.name} path={link.path} onClick={closeMenu} />
+                            <NavLink key={index} name={link.name} path={link.path} to={link.to} onClick={closeMenu} />
                         ))}
 
                         {/* Dropdown Menu */}
-                        <Menu autoSelect={false} isLazy>
+                        {/* <Menu autoSelect={false} isLazy>
                             {({ isOpen: isDropdownOpen, onClose: closeDropdown }) => (
                                 <>
                                     <MenuButton _hover={{ color: 'blue.400' }}>
@@ -99,12 +97,13 @@ function Navbar() {
                                     </MenuList>
                                 </>
                             )}
-                        </Menu>
+                        </Menu> */}
                     </HStack>
                 </HStack>
 
                 <Button colorScheme="blue" size="md" rounded="md" display={{ base: 'none', md: 'block' }}>
-                    Sign in
+                    <Link as={Navlink}
+                        to="/login" style={{ textDecoration: 'none' }} > Sign in</Link>
                 </Button>
                 <IconButton
                     size="md"
@@ -114,22 +113,22 @@ function Navbar() {
                     onClick={toggleOpen}
                 />
             </Flex>
-            
+
 
             {/* Mobile Screen Links */}
             {isOpen ? (
                 <Box pb={4} display={{ base: 'inherit', md: 'none' }}>
                     <Stack as="nav" spacing={2}>
                         {navLinks.map((link, index) => (
-                            <NavLink key={index} name={link.name} path={link.path} onClick={closeMenu} />
+                            <NavLink key={index} name={link.name} path={link.path} to={link.to} onClick={closeMenu} />
                         ))}
-                        <Text fontWeight="semibold" color="gray.500">
+                        {/* <Text fontWeight="semibold" color="gray.500">
                             Community
-                        </Text>
+                        </Text> */}
                         <Stack pl={2} spacing={1} mt={'0 !important'}>
-                            {dropdownLinks.map((link, index) => (
+                            {/* {dropdownLinks.map((link, index) => (
                                 <NavLink key={index} name={link.name} path={link.path} onClick={closeMenu} />
-                            ))}
+                            ))} */}
                         </Stack>
                     </Stack>
                 </Box>
@@ -139,10 +138,11 @@ function Navbar() {
 }
 
 // NavLink Component
-function NavLink({ name, path, onClick }) {
+function NavLink({ name, path, onClick, to }) {
     return (
         <Link
-            href={path}
+            as={Navlink}
+            to={to}
             lineHeight="inherit"
             _hover={{
                 textDecoration: 'none',
@@ -156,14 +156,14 @@ function NavLink({ name, path, onClick }) {
 }
 
 // Dropdown MenuLink Component
-function MenuLink({ name, path, onClick }) {
-    return (
-        <Link href={path} onClick={onClick}>
-            <MenuItem _hover={{ color: 'blue.400', bg: 'gray.200' }}>
-                <Text>{name}</Text>
-            </MenuItem>
-        </Link>
-    );
-}
+// function MenuLink({ name, path, onClick }) {
+//     return (
+//         <Link to={path} onClick={onClick}>
+//             <MenuItem _hover={{ color: 'blue.400', bg: 'gray.200' }}>
+//                 <Text>{name}</Text>
+//             </MenuItem>
+//         </Link>
+//     );
+// }
 
 export default Navbar;

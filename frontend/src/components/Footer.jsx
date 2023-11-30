@@ -1,20 +1,15 @@
 import {
     Box,
     Stack,
-    HStack,
-    VStack,
     Link,
     Divider,
     Image,
-    Text,
-    Button,
-
-    LinkProps
+    Text
 } from '@chakra-ui/react';
 // Here we have used react-icons package for the icons
-import { FaGithub } from 'react-icons/fa';
-import { BsDiscord } from 'react-icons/bs';
-import logoImg from "../logo.png";
+// import { FaGithub } from 'react-icons/fa';
+// import { BsDiscord } from 'react-icons/bs';
+import logoImg from "../images/logo.png";
 
 const Footer = () => {
     return (
@@ -86,12 +81,12 @@ const Footer = () => {
     );
 };
 
-const CustomLink = ({ children, ...props }: LinkProps) => {
-    return (
-        <Link href="#" fontSize="sm" _hover={{ textDecoration: 'underline' }} {...props}>
-            {children}
-        </Link>
-    );
-};
+// const CustomLink = ({ children, ...props }: LinkProps) => {
+//     return (
+//         <Link href="#" fontSize="sm" _hover={{ textDecoration: 'underline' }} {...props}>
+//             {children}
+//         </Link>
+//     );
+// };
 
 export default Footer;

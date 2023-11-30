@@ -8,10 +8,12 @@ import AboutUs from './AboutUs'
 export default function HomePage() {
   return (
     <div>
-      <Navbar />
+
+      {/* <Navbar /> */}
       <HeroSection />
       <AboutUs />
-      <Footer />
+      {/* <Footer /> */}
+
     </div>
   )
 }
